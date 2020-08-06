@@ -2,6 +2,7 @@ const path = require('path');
 const NodeGoogleDrive = require('node-google-drive')
 const fs = require('fs');
 const { Client, MessageAttachment } = require('discord.js');
+require('dotenv').config()
 
 const client = new Client();
 
@@ -27,7 +28,7 @@ client.on('message', async message => {
     }
     const command = commands[1]
     if (command === "help") {
-      message.channel.send("This is Picord Bot\n!picord - Help\n!picord [name] - Get a random picture of [name]");
+      message.channel.send("This is Picord Bot\n!picord - Help\n!picord [name] - Get a random picture of [name]\nAdd your own images here - ");
       return
     }
     // Create the attachment using MessageAttachment
@@ -44,7 +45,7 @@ client.on('message', async message => {
   }
 });
 
-client.login('NzQxMDMxMjI4OTU3OTE3MjE1.XyxpHA.FJu3CdkofdlLAXlDOnq8t98tfSk');
+client.login(process.env.DISCORD_TOKEN);
 
 // Let's wrap everything in an async function to use await sugar
 async function getRandomImage(name) {
